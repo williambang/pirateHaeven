@@ -135,7 +135,7 @@ public class buildingScript : MonoBehaviour {
 
         } else
         {
-
+            /*
             Renderer rend = liveObjectToBuild.transform.GetChild(0).GetComponent<Renderer>();
 
             rend.material.shader = Shader.Find("_Color");
@@ -143,7 +143,7 @@ public class buildingScript : MonoBehaviour {
 
             rend.material.shader = Shader.Find("Specular");
             rend.material.SetColor("_SpecColor", Color.red);
-
+            */
         }
 
     }
@@ -175,21 +175,4 @@ public class buildingScript : MonoBehaviour {
 
     }
 
-
-        /*
-
-            currentPlotSize = plots.Count;
-
-        if (plots.Count > 0)
-        {
-            onPlot = true;
-
-        } else
-        {
-            onPlot = false;
-        }
-
-	}
-
-*/
   

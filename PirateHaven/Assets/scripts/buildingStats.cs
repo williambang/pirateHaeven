@@ -8,7 +8,7 @@ public class buildingStats : MonoBehaviour {
     public GameObject player;
     public GameObject buildingSettings;
 
-    public string name;
+    public string buildingName;
     public int moneyCost;
     public int ressourcesCost;
     public int rumCost;

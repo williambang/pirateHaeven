@@ -30,10 +30,10 @@ public class playerScript : MonoBehaviour {
     public bool clickedBuildingButton;
 
     void Start () {
+        buildingMenu.SetActive(false);
+        //text.text = "BUILDMODE OFF";
 
-		//text.text = "BUILDMODE OFF";
-
-	}
+    }
     void Update()
     {
 
@@ -50,8 +50,8 @@ public class playerScript : MonoBehaviour {
                 buildMode = false;
                 Destroy(liveBuildMarker);
                 //text.text = "BUILDMODE OFF";
-                buildingMenu.active = false;
-                ringsOfDeath.active = false;
+                buildingMenu.SetActive(false);
+                ringsOfDeath.SetActive(false);
             }
             else
             {
@@ -60,8 +60,8 @@ public class playerScript : MonoBehaviour {
                 buildMode = true;
                 liveBuildMarker = Instantiate(buildMarker, Input.mousePosition, Quaternion.identity);
 
-                buildingMenu.active = true;
-                ringsOfDeath.active = true;
+                buildingMenu.SetActive(true);
+                ringsOfDeath.SetActive(true);
 
                 //text.text = "BUILDMODE ON";
 
@@ -74,106 +74,6 @@ public class playerScript : MonoBehaviour {
 
             }
         }
-
-          
-
-
-        /*
-
-        // BUILDMODE IS ON
-
-        if (buildMode == true)
-        {
-
-
-            // Marker Position and Rotation
-
-            markerRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (coll.Raycast(markerRay, out planeHit, 100.0f))
-            {
-
-                Vector3 posMarker = new Vector3(planeHit.point.x, 0.1f, planeHit.point.z);
-
-                if (mouseDown == false)
-                {
-                    cubeMarker.transform.position = posMarker;
-                }
-                else if (canBuild == true)
-                {
-                    Vector3 targetPosition = new Vector3(posMarker.x, cubeMarker.transform.position.y, posMarker.z);
-                }
-
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Debug.Log("GetMouseDown!");
-                    if (canBuild == true)
-                    {
-                        mouseDown = true;
-                        Debug.Log("Mouse down = true!");
-                    }
-                }
-
-
-                if (Input.GetMouseButtonUp(0))
-                {
-
-                    Instantiate(objectToBuild, cubeMesh.transform.position, cubeMesh.transform.rotation);
-                    Debug.Log("Object instantiated");
-
-                }
-
-
-            }
-
-            /*
-                   // Check if mouse is on plot and if we can build
-
-                   hoverRay = Camera.main.ScreenPointToRay (Input.mousePosition); 
-
-            if (Physics.Raycast (hoverRay, out hit)) { 
-
-               objectHit = hit.transform.gameObject;
-
-               if (cubeMarker.GetComponent<cubeMarkerScript>().onPlot == true) {
-
-                   canBuild = true;
-
-                           cubeMarker.GetComponent<cubeMarkerScript>().child.transform.position = cubeMarker.GetComponent<cubeMarkerScript>().plots[0].transform.position;
-
-                           //float posX = cubeMarker.GetComponent<cubeMarkerScript>().plots[0].transform.position.x;
-                           //float posY = cubeMarker.GetComponent<cubeMarkerScript>().plots[0].transform.position.y;
-                           //Debug.Log(posX);
-                           //Debug.Log(posX);
-
-                           /* Vector3 cPos = cubeMarker.GetComponent<cubeMarkerScript>().child.transform.position;
-
-                            Vector3 pPos = cubeMarker.GetComponent<cubeMarkerScript>().plots[0].transform.position;
-
-                            Vector3 NewCpos = new Vector3(pPos.x, cPos.y, pPos.z);
-
-                            cPos = NewCpos;
-
-
-
-
-                       } else {
-
-                   canBuild = false;
-
-                        }
-                   }
-
-
-               }
-
-               //BUILD MODE IS OFF
-               if (buildMode == false) {
-
-
-
-               }*/
 
         }
     }
