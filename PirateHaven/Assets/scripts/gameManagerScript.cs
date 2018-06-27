@@ -13,6 +13,10 @@ public class gameManagerScript : MonoBehaviour {
     public int visitors;
     public int dockedShips;
 
+    public int smallShips;
+    public int mediumShips;
+    public int largeShips;
+
     public float attractiveness;
     public int harborLevel = 1;
 
@@ -41,5 +45,7 @@ public class gameManagerScript : MonoBehaviour {
         populationText.text = population.ToString();
         attractionText.text = attractiveness.ToString();
 
-	}
+
+
+    }
 }

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class buildingStats : MonoBehaviour {
 
+    public GameObject player;
+    public GameObject buildingSettings;
+
     public string name;
     public int moneyCost;
     public int ressourcesCost;
@@ -30,6 +33,7 @@ public class buildingStats : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        player = GameObject.FindGameObjectWithTag("MainCamera");
 
 	}
 	
@@ -60,6 +64,23 @@ public class buildingStats : MonoBehaviour {
         {
 
             overlapping = false;
+
+        }
+
+    }
+
+    private void OnMouseOver()
+    {
+        
+        if (player.GetComponent<playerScript>().buildMode == false && Input.GetMouseButtonUp(0))
+        {
+
+            GameObject bs = Instantiate(buildingSettings, buildingSettings.transform.position, buildingSettings.transform.rotation) as GameObject;
+
+            bs.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
+
+            bs.GetComponent<buildingSettings>().buildingName.text = name;
+            bs.GetComponent<buildingSettings>().buildingObject = this.gameObject;
 
         }
 

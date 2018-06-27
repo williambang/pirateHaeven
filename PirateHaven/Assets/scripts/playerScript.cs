@@ -66,6 +66,13 @@ public class playerScript : MonoBehaviour {
                 //text.text = "BUILDMODE ON";
 
             }
+
+            if (buildMode == false)
+            {
+
+
+
+            }
         }
 
           

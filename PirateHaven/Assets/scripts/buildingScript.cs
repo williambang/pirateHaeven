@@ -62,7 +62,7 @@ public class buildingScript : MonoBehaviour {
 
                     var objComp = liveObjectToBuild.GetComponent<buildingStats>();
 
-                    if (plot != null && previewChanging == false && liveObjectToBuild.GetComponent<buildingStats>().overlapping != true && gm.money >= objComp.moneyCost && gm.rum >= objComp.rumCost && gm.ressources >= objComp.ressourcesCost)
+                    if (plot != null && previewChanging == false && liveObjectToBuild.GetComponent<buildingStats>().overlapping == false && gm.money >= objComp.moneyCost && gm.rum >= objComp.rumCost && gm.ressources >= objComp.ressourcesCost)
                     {
 
                         gm.money -= objComp.moneyCost;
@@ -74,6 +74,11 @@ public class buildingScript : MonoBehaviour {
                         Instantiate(objectToBuild, liveObjectToBuild.transform.position, liveObjectToBuild.transform.rotation);
                         Debug.Log("Object instantiated");
                         plot = null;
+
+                        objectToBuild = null;
+                        Destroy(liveObjectToBuild);
+                        liveObjectToBuild = null;
+                        
 
 
                     }
@@ -110,7 +115,13 @@ public class buildingScript : MonoBehaviour {
         if (other.tag == "plot" && other.GetComponent<pointScript>().occupied == false && liveObjectToBuild != null)
         {
 
-            
+            Renderer rend = liveObjectToBuild.transform.GetChild(0).GetComponent<Renderer>();
+
+            rend.material.shader = Shader.Find("_Color");
+            rend.material.SetColor("_Color", Color.green);
+
+            rend.material.shader = Shader.Find("Specular");
+            rend.material.SetColor("_SpecColor", Color.green);
 
             Debug.Log(other);
 
@@ -121,6 +132,17 @@ public class buildingScript : MonoBehaviour {
   
             liveObjectToBuild.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 
+
+        } else
+        {
+
+            Renderer rend = liveObjectToBuild.transform.GetChild(0).GetComponent<Renderer>();
+
+            rend.material.shader = Shader.Find("_Color");
+            rend.material.SetColor("_Color", Color.red);
+
+            rend.material.shader = Shader.Find("Specular");
+            rend.material.SetColor("_SpecColor", Color.red);
 
         }
 
@@ -137,6 +159,14 @@ public class buildingScript : MonoBehaviour {
             liveObjectToBuild.transform.parent = this.transform;
             Debug.Log(other);
             plot = null;
+
+            Renderer rend = liveObjectToBuild.transform.GetChild(0).GetComponent<Renderer>();
+
+            rend.material.shader = Shader.Find("_Color");
+            rend.material.SetColor("_Color", Color.red);
+
+            rend.material.shader = Shader.Find("Specular");
+            rend.material.SetColor("_SpecColor", Color.red);
 
         }
 

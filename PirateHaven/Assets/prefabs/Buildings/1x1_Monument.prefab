@@ -153,6 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae40dfcb1046f89429aa959c26b52d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  buildingSettings: {fileID: 1260884911339786, guid: 18263eabd4efdce478a97e1af4229a09,
+    type: 2}
   name: monument
   moneyCost: 15
   ressourcesCost: 0

@@ -1125,7 +1125,7 @@ GameObject:
   - component: {fileID: 657646327}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2782,13 +2782,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb702112a47d6d745bfe58c546dafbe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 450
-  rum: 120
-  ressources: 50
+  money: 1000
+  rum: 1000
+  ressources: 1000
   slaves: 0
   population: 0
   visitors: 0
   dockedShips: 0
+  smallShips: 0
+  mediumShips: 0
+  largeShips: 0
   attractiveness: 0
   harborLevel: 1
   tax: 0
@@ -3674,7 +3677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2113111199
 RectTransform:
   m_ObjectHideFlags: 0

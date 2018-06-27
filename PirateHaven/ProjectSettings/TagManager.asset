@@ -18,6 +18,8 @@ TagManager:
   - ground
   - placedBuilding
   - gameManager
+  - buildingSettings
+  - Canvas
   layers:
   - Default
   - TransparentFX
