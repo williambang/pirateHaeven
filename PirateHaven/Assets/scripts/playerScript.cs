@@ -40,7 +40,7 @@ public class playerScript : MonoBehaviour {
 
 
         //SWITCH MODE
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
         {
 
             if (buildMode == true)

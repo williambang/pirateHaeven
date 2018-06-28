@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6fd789d67ec464ab0b23d0ca452115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
   buildMode: 1
   onPlot: 0
   plot: {fileID: 0}

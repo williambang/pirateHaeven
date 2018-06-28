@@ -16,8 +16,6 @@ public class wat : MonoBehaviour {
     {
         float ratio = space / radius;
         float objects = 360 / ratio;
-        Debug.Log(ratio);
-        Debug.Log(objects);
 
         Vector3 center = transform.position;
         for (int i = 0; i < objects; i++)

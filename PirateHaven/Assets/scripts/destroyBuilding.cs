@@ -16,11 +16,10 @@ public class destroyBuilding : MonoBehaviour {
         Button btn = this.gameObject.GetComponent<Button>();
         btn.onClick.AddListener(ClickToDestroy);
 
-        if (isDestroyButton == true)
-        {
+  
             building = parent.GetComponent<buildingSettings>().buildingObject;
 
-        }
+    
        
 
     }
@@ -32,8 +31,13 @@ public class destroyBuilding : MonoBehaviour {
 
     void ClickToDestroy()
     {
-
+        if (isDestroyButton == true)
+        {
+        Destroy(building.GetComponent<buildingStats>().currentBuilding);
         Destroy(building);
+        }
+
+        building.GetComponent<buildingStats>().buildingSettingsOpen = false;
         Destroy(parent);
 
     }

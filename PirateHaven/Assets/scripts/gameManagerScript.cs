@@ -8,7 +8,9 @@ public class gameManagerScript : MonoBehaviour {
     public int money;
     public int rum;
     public int ressources;
-    public int slaves;
+    public int workers;
+    public int availableWorkers;
+    public int workersWithHome;
     public int population;
     public int visitors;
     public int dockedShips;
@@ -19,6 +21,7 @@ public class gameManagerScript : MonoBehaviour {
 
     public float attractiveness;
     public int harborLevel = 1;
+    public int workerLevel = 1;
 
     public int tax;
     public int dockPrice;
@@ -30,9 +33,12 @@ public class gameManagerScript : MonoBehaviour {
     public Text populationText;
     public Text attractionText;
 
+
 	// Use this for initialization
 	void Start () {
-		
+
+        availableWorkers = workers;
+
 	}
 	
 	// Update is called once per frame
@@ -40,11 +46,10 @@ public class gameManagerScript : MonoBehaviour {
 
         moneyText.text = money.ToString();
         ressourcesText.text = ressources.ToString();
-        rumText.text = rum.ToString();
+        rumText.text = workers.ToString();
         visitorsText.text = visitors.ToString();
         populationText.text = population.ToString();
         attractionText.text = attractiveness.ToString();
-
 
 
     }

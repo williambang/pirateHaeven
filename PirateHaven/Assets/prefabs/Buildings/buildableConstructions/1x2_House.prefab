@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1971124358321836}
+  m_IsPrefabParent: 1
+--- !u!1 &1971124358321836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4524631931084828}
+  - component: {fileID: 65269650249937218}
+  - component: {fileID: 114936879235691288}
+  - component: {fileID: 54746130604479978}
+  m_Layer: 0
+  m_Name: 1x2_House
+  m_TagString: placedBuilding
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4524631931084828
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971124358321836}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.236215, y: -6.5173104e-17, z: 2.9351358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54746130604479978
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971124358321836}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65269650249937218
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971124358321836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.8, y: 7, z: 3.76}
+  m_Center: {x: 0, y: 2.3, z: -0.06}
+--- !u!114 &114936879235691288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971124358321836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae40dfcb1046f89429aa959c26b52d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  buildingSettings: {fileID: 1260884911339786, guid: 18263eabd4efdce478a97e1af4229a09,
+    type: 2}
+  buildingName: House
+  ogBuildingName: 
+  moneyCost: 20
+  ressourcesCost: 0
+  rumCost: 0
+  currentBuilding: {fileID: 0}
+  plot: {fileID: 0}
+  buildingSettingsOpen: 0
+  constructionCompleted: 0
+  constructionStarted: 0
+  constructionCurrentAmount: 0
+  constructionAmount: 120
+  constructionBar: {fileID: 0}
+  addWorkerButton: {fileID: 0}
+  removeWorkerButton: {fileID: 0}
+  buildingIsHousing: 1
+  canvasObj: {fileID: 1561035211651698, guid: 7aba02bb06f3a3842bea89e3e025aa84, type: 2}
+  hoverCanvas: {fileID: 1730545010868432, guid: 08d5cd57f5e7bea4ba9dd7526bde5314,
+    type: 2}
+  currentCanvas: {fileID: 0}
+  worksite: {fileID: 1913324991920818, guid: e6598d3ac574cbb45a31d7409107f0bf, type: 2}
+  level01: {fileID: 1284586372780952, guid: 84d74b287b8d57a4eb8e24c8cff955f6, type: 2}
+  level02: {fileID: 1007059581705268, guid: 8411a4a666057c34ea8788849324373a, type: 2}
+  level03: {fileID: 0}
+  gm: {fileID: 0}
+  attractiveness: 5
+  dailyCost: 0
+  dailyIncome: 0
+  currentLiving: 0
+  maxLiving: 5
+  currentVisitors: 0
+  maxVisitors: 5
+  currentEmployed: 0
+  maxEmployed: 5
+  currentWorkers: 0
+  maxWorkers: 5
+  buildingLevel: 0
+  totalVisitors: 0
+  famousVisitors: []
+  overlapping: 0
