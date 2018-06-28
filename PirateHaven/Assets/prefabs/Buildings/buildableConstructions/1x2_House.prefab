@@ -67,7 +67,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.8, y: 7, z: 3.76}
+  m_Size: {x: 7.8, y: 9, z: 3.76}
   m_Center: {x: 0, y: 2.3, z: -0.06}
 --- !u!114 &114936879235691288
 MonoBehaviour:
@@ -88,6 +88,7 @@ MonoBehaviour:
   moneyCost: 20
   ressourcesCost: 0
   rumCost: 0
+  upgradeCost: 0
   currentBuilding: {fileID: 0}
   plot: {fileID: 0}
   buildingSettingsOpen: 0
@@ -114,9 +115,9 @@ MonoBehaviour:
   currentLiving: 0
   maxLiving: 5
   currentVisitors: 0
-  maxVisitors: 5
+  maxVisitors: 0
   currentEmployed: 0
-  maxEmployed: 5
+  maxEmployed: 0
   currentWorkers: 0
   maxWorkers: 5
   buildingLevel: 0

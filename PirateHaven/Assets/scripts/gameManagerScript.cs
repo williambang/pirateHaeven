@@ -13,6 +13,7 @@ public class gameManagerScript : MonoBehaviour {
     public int workersWithHome;
     public int population;
     public int visitors;
+    public int availableVisitors;
     public int dockedShips;
 
     public int smallShips;

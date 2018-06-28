@@ -13,6 +13,7 @@ public class buildingStats : MonoBehaviour {
     public int moneyCost;
     public int ressourcesCost;
     public int rumCost;
+    public int upgradeCost;
 
     public GameObject currentBuilding;
     public GameObject plot;
@@ -37,6 +38,9 @@ public class buildingStats : MonoBehaviour {
     public GameObject currentCanvas;
 
     public GameObject worksite;
+
+    public GameObject[] level;
+
     public GameObject level01;
     public GameObject level02;
     public GameObject level03;
@@ -141,16 +145,18 @@ public class buildingStats : MonoBehaviour {
         {
 
             constructionCompleted = true;
+            Destroy(currentCanvas);
 
             if (buildingLevel == 0)
             {
+                buildingLevel = 1;
                 constructionCurrentAmount = 0;
                 constructionAmount *= 2;
-                GameObject firstStructure = Instantiate(level01, this.transform.position, this.transform.rotation);
+                GameObject building = Instantiate(level[buildingLevel], this.transform.position, this.transform.rotation);
 
-                firstStructure.transform.parent = this.transform;
+                building.transform.parent = this.transform;
                 Destroy(currentBuilding);
-                currentBuilding = firstStructure;
+                currentBuilding = building;
 
                 constructionBar.fillAmount = 0;
                 Destroy(currentCanvas);
@@ -158,16 +164,22 @@ public class buildingStats : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers += currentWorkers;
                 currentWorkers = 0;
                 
-                buildingLevel = 1;
+                
 
             }else if (buildingLevel == 1)
             {
 
                 constructionCurrentAmount = 0;
                 constructionAmount *= 2;
-                GameObject house = Instantiate(level02, gameObject.transform.position, gameObject.transform.rotation);
+                GameObject building = Instantiate(level02, gameObject.transform.position, gameObject.transform.rotation);
+
+                building.transform.parent = this.transform;
                 Destroy(currentBuilding);
-                house = currentBuilding;
+                currentBuilding = building;
+
+                GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers += currentWorkers;
+                currentWorkers = 0;
+
                 buildingLevel = 2;
 
             } else if (buildingLevel == 2)
@@ -175,9 +187,15 @@ public class buildingStats : MonoBehaviour {
 
                 constructionCurrentAmount = 0;
                 constructionAmount *= 2;
-                GameObject house = Instantiate(level03, gameObject.transform.position, gameObject.transform.rotation);
+                GameObject building = Instantiate(level03, gameObject.transform.position, gameObject.transform.rotation);
+
+                building.transform.parent = this.transform;
                 Destroy(currentBuilding);
-                house = currentBuilding;
+                currentBuilding = building;
+
+                GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers += currentWorkers;
+                currentWorkers = 0;
+
                 buildingLevel = 3;
 
             }
@@ -221,50 +239,97 @@ public class buildingStats : MonoBehaviour {
         if (constructionCompleted == true)
         {
 
-
-
             Vector3 newCanvasPos = new Vector3(gameObject.transform.position.x, (this.GetComponent<BoxCollider>().size.y - 2f), gameObject.transform.position.z);
 
             currentCanvas = Instantiate(hoverCanvas, newCanvasPos, gameObject.transform.rotation);
             currentCanvas.transform.parent = transform;
 
 
-            if (maxLiving > 0 && buildingIsHousing)
+            if (maxLiving > 0 && buildingIsHousing && maxEmployed <= 0)
             {
 
                 currentCanvas.transform.GetChild(0).GetComponent<InputField>().text = buildingName.ToString();
                 currentCanvas.transform.GetChild(1).GetComponent<Text>().text = currentLiving.ToString() + "/" + maxLiving.ToString();
 
-            } else if (maxVisitors > 0 && !buildingIsHousing)
+                Button upgradeBuildingButton = currentCanvas.transform.GetChild(2).gameObject.GetComponent<Button>();
+                Button deleteBuildingButton = currentCanvas.transform.GetChild(3).gameObject.GetComponent<Button>();
+
+                upgradeBuildingButton.onClick.AddListener(ClickToUpgrade);
+                deleteBuildingButton.onClick.AddListener(ClickToDelete);
+
+            } else if (maxVisitors > 0 && !buildingIsHousing && maxEmployed <= 0)
             {
 
                 currentCanvas.transform.GetChild(0).GetComponent<InputField>().text = buildingName.ToString();
                 currentCanvas.transform.GetChild(1).GetComponent<Text>().text = currentVisitors.ToString() + "/" + maxVisitors.ToString();
-                currentCanvas.transform.GetChild(2).gameObject.SetActive(true);
-                currentCanvas.transform.GetChild(3).gameObject.SetActive(true);
+
+                Button upgradeBuildingButton = currentCanvas.transform.GetChild(2).gameObject.GetComponent<Button>();
+                Button deleteBuildingButton = currentCanvas.transform.GetChild(3).gameObject.GetComponent<Button>();
+
+                upgradeBuildingButton.onClick.AddListener(ClickToUpgrade);
+                deleteBuildingButton.onClick.AddListener(ClickToDelete);
+
+            } else if (maxVisitors > 0 && !buildingIsHousing && maxEmployed > 0)
+            {
+
+                currentCanvas.transform.GetChild(0).GetComponent<InputField>().text = buildingName.ToString();
+                currentCanvas.transform.GetChild(1).GetComponent<Text>().text = currentVisitors.ToString() + "/" + maxVisitors.ToString();
                 currentCanvas.transform.GetChild(4).gameObject.SetActive(true);
+                currentCanvas.transform.GetChild(5).gameObject.SetActive(true);
+                currentCanvas.transform.GetChild(6).gameObject.SetActive(true);
+                currentCanvas.transform.GetChild(6).GetComponent<Text>().text = currentEmployed.ToString();
 
 
-                Button addEmployeeButton = currentCanvas.transform.GetChild(3).gameObject.GetComponent<Button>();
-                Button removeEmployeeButton = currentCanvas.transform.GetChild(2).gameObject.GetComponent<Button>();
+                Button addEmployeeButton = currentCanvas.transform.GetChild(5).gameObject.GetComponent<Button>();
+                Button removeEmployeeButton = currentCanvas.transform.GetChild(4).gameObject.GetComponent<Button>();
 
+                Button upgradeBuildingButton = currentCanvas.transform.GetChild(2).gameObject.GetComponent<Button>();
+                Button deleteBuildingButton = currentCanvas.transform.GetChild(3).gameObject.GetComponent<Button>();
 
-                addEmployeeButton.onClick.AddListener(ClickToAddEployee);
+                upgradeBuildingButton.onClick.AddListener(ClickToUpgrade);
+                deleteBuildingButton.onClick.AddListener(ClickToDelete);
+
+                addEmployeeButton.onClick.AddListener(ClickToAddEmployee);
                 removeEmployeeButton.onClick.AddListener(ClickToRemoveEmployee);
 
-                
-
-
-            } else
+            }
+            else if (maxVisitors <= 0 && !buildingIsHousing && maxEmployed > 0)
             {
 
                 currentCanvas.transform.GetChild(0).GetComponent<InputField>().text = buildingName.ToString();
 
+                currentCanvas.transform.GetChild(4).gameObject.SetActive(true);
+                currentCanvas.transform.GetChild(5).gameObject.SetActive(true);
+                currentCanvas.transform.GetChild(6).gameObject.SetActive(true);
+                currentCanvas.transform.GetChild(6).GetComponent<Text>().text = currentEmployed.ToString();
+
+
+                Button addEmployeeButton = currentCanvas.transform.GetChild(5).gameObject.GetComponent<Button>();
+                Button removeEmployeeButton = currentCanvas.transform.GetChild(4).gameObject.GetComponent<Button>();
+
+                Button upgradeBuildingButton = currentCanvas.transform.GetChild(2).gameObject.GetComponent<Button>();
+                Button deleteBuildingButton = currentCanvas.transform.GetChild(3).gameObject.GetComponent<Button>();
+
+                upgradeBuildingButton.onClick.AddListener(ClickToUpgrade);
+                deleteBuildingButton.onClick.AddListener(ClickToDelete);
+
+                addEmployeeButton.onClick.AddListener(ClickToAddEmployee);
+                removeEmployeeButton.onClick.AddListener(ClickToRemoveEmployee);
+
             }
+            else
+            {
 
+                currentCanvas.transform.GetChild(0).GetComponent<InputField>().text = buildingName.ToString();
 
+                Button upgradeBuildingButton = currentCanvas.transform.GetChild(2).gameObject.GetComponent<Button>();
+                Button deleteBuildingButton = currentCanvas.transform.GetChild(3).gameObject.GetComponent<Button>();
+
+                upgradeBuildingButton.onClick.AddListener(ClickToUpgrade);
+                deleteBuildingButton.onClick.AddListener(ClickToDelete);
+
+            }
         }
-
     }
 
  
@@ -276,7 +341,7 @@ public class buildingStats : MonoBehaviour {
             GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers -= 1;
 
             currentWorkers = currentWorkers + 1;
-            currentCanvas.transform.GetChild(4).GetComponent<Text>().text = currentEmployed.ToString();
+            currentCanvas.transform.GetChild(6).GetComponent<Text>().text = currentWorkers.ToString();
 
         }
         
@@ -291,14 +356,14 @@ public class buildingStats : MonoBehaviour {
             GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers += 1;
 
             currentWorkers = currentWorkers - 1;
-            currentCanvas.transform.GetChild(4).GetComponent<Text>().text = currentEmployed.ToString();
+            currentCanvas.transform.GetChild(6).GetComponent<Text>().text = currentWorkers.ToString();
 
         }
 
 
     }
 
-    void ClickToAddEployee()
+    void ClickToAddEmployee()
     {
 
         if (GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers > 0 && currentEmployed < maxEmployed)
@@ -306,6 +371,7 @@ public class buildingStats : MonoBehaviour {
             GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers -= 1;
 
             currentEmployed = currentEmployed + 1;
+            currentCanvas.transform.GetChild(6).GetComponent<Text>().text = currentEmployed.ToString();
         }
 
 
@@ -319,10 +385,110 @@ public class buildingStats : MonoBehaviour {
             GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().availableWorkers += 1;
 
             currentEmployed = currentEmployed - 1;
+            currentCanvas.transform.GetChild(6).GetComponent<Text>().text = currentEmployed.ToString();
 
         }
 
         
+    }
+
+    void ClickToUpgrade()
+    {
+
+        if (constructionCompleted)
+        {
+
+            if (gm.GetComponent<gameManagerScript>().money >= upgradeCost) {
+
+                Destroy(currentCanvas);
+                Destroy(currentBuilding);
+
+                Vector3 newCanvasPos = new Vector3(gameObject.transform.position.x, 3.5f, gameObject.transform.position.z);
+
+                currentCanvas = Instantiate(canvasObj, newCanvasPos, gameObject.transform.rotation);
+                currentCanvas.transform.parent = transform;
+                constructionBar = currentCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
+                addWorkerButton = currentCanvas.transform.GetChild(2).GetComponent<Button>();
+                removeWorkerButton = currentCanvas.transform.GetChild(1).GetComponent<Button>();
+                addWorkerButton.onClick.AddListener(ClickToAddWorker);
+                removeWorkerButton.onClick.AddListener(ClickToRemoveWorker);
+
+                constructionCompleted = false;
+                constructionStarted = true;
+
+                
+                currentBuilding = Instantiate(worksite, gameObject.transform.position, gameObject.transform.rotation);
+
+                StartCoroutine(constructionAddPercentage());
+                constructionCurrentAmount += 1;
+
+
+
+            }
+            
+
+        }
+
+
+    }
+
+    void ClickToDelete()
+    {
+         if (constructionCompleted)
+          {
+
+              if (currentEmployed > 0)
+              {
+
+                  gm.GetComponent<gameManagerScript>().availableWorkers += currentEmployed;
+
+                  if (currentVisitors > 0)
+                  {
+
+                      gm.GetComponent<gameManagerScript>().availableVisitors += currentVisitors;
+                      Destroy(gameObject);
+
+                  } else
+                  {
+
+                      Destroy(gameObject);
+
+                  }
+
+
+              } else if (currentLiving > 0)
+              {
+
+                  gm.GetComponent<gameManagerScript>().workersWithHome -= currentLiving;
+                  Destroy(gameObject);
+
+              } else if (currentVisitors > 0)
+              {
+
+                  gm.GetComponent<gameManagerScript>().availableVisitors += currentVisitors;
+                  Destroy(gameObject);
+
+              } else
+              {
+
+                  Destroy(gameObject);
+
+              }
+
+
+          }
+
+          if (constructionStarted)
+          {
+
+                  gm.GetComponent<gameManagerScript>().availableWorkers += currentWorkers;
+                  Destroy(gameObject);
+
+          }
+
+
+
+
     }
 
 
@@ -352,7 +518,6 @@ public class buildingStats : MonoBehaviour {
 
                 currentCanvas.transform.GetChild(4).GetComponent<Text>().text = currentEmployed.ToString();
                 buildingName = currentCanvas.transform.GetChild(0).GetComponent<InputField>().text;
-
 
             }
 
