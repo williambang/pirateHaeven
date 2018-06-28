@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4500972435352606}
   m_Layer: 0
-  m_Name: housing_level03_worksite
+  m_Name: housing_level03_worksite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
