@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class gameManagerScript : MonoBehaviour {
 
-
     [System.Serializable]
     public class Attraction
     {

@@ -96,7 +96,7 @@ public class workerScript : MonoBehaviour {
 
 			}
 			return attractivePoint;
-        }
+    }
 
 }
 

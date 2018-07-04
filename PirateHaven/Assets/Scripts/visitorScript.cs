@@ -6,135 +6,142 @@ using System.Linq;
 
 public class visitorScript : MonoBehaviour {
 
-    public enum visitorState {inBuilding, wandering, leaving, lookingForAttraction, walkingToAttraction};
+    public enum visitorState { wandering, leaving, walkingToAttraction};
 
-    public GameObject[] allBuildings;
+	public visitorState currentState;
 
-    public visitorState currentState;
-
-    public float[] buildingPercentage;
-    public int totalAttraction;
-
-    public GameObject currentlyVisiting;
     public GameObject targetPoint;
-    public GameObject targetBuilding;
-    public GameObject collidingBuilding;
 
-    private GameObject gameManager; 
-    private gameManagerScript gmScript;
+	public NavMeshAgent agent;  
 
-    public List<gameManagerScript.Attraction> attractionBuildings;
+	private GameObject gameManager; 
 
-    public bool inBuilding;
-    public bool wandering;
+	public GameObject lastPoint;   
 
-    private int maxIndex;
-    private float maxValue;
+    public float wanderingTime;
 
-    public NavMeshAgent agent;    
 
-	// Use this for initialization
+
 	void Start () {
+		gameManager = GameObject.FindGameObjectWithTag("gameManager");
+		resetVisitor();
+	}
+	
+	void OnTriggerStay(Collider other) {
+		if (other.gameObject == targetPoint) {
+			if(currentState == visitorState.wandering) {
+						resetVisitor();
+			}
+			else if( currentState == visitorState.walkingToAttraction ) {
+				var bldMnger = other.transform.parent.GetComponent<buildingManager>();
+				var assWorkers = bldMnger.currentAssignedWorkers;
+				
+				{
+					if( assWorkers.Contains(gameObject) ) {
+						var work = other.gameObject;
+						startVising(work);
+					}
+					else {
+						resetVisitor();
+					}
+				}
+			}
+		}
+    } 
 
-        gameManager = GameObject.FindGameObjectWithTag("gameManager");
-        gmScript = gameManager.GetComponent<gameManagerScript>();
-    }
+	public void goToAttraction(GameObject target) {
 
-    void Update()
+		targetPoint = target;
+		agent.SetDestination(target.transform.position);
+		currentState = visitorState.walkingToAttraction;
+	}
+
+	public void startVising(GameObject work) {
+
+		var bldMnger = work.transform.parent.GetComponent<buildingManager>();
+		bldMnger.currentWorkers.Add( gameObject );
+		gameObject.SetActive(false);
+
+	}
+
+	public void resetVisitor() {
+		lastPoint = targetPoint;
+		targetPoint = null;
+		currentState = visitorState.wandering;
+		var point = getAttractivePoint();
+		targetPoint = point;
+		agent.SetDestination(point.transform.position);	
+        wanderingTime = Random.Range(5, 60);
+        StartCoroutine(wandering());	
+	}
+
+	private GameObject getAttractivePoint()
     {
-
-        if (currentState == visitorState.lookingForAttraction)
-        {
-
-            if (targetPoint == null && gmScript.attractionBuildings.Count > 0)
-            {
-                Debug.Log("There are Attractions!");
-                //findMostAttractive();
-            }
-            else {
-                Debug.Log("There are no Attractions!");
-            }
-
-        /* 
-            if (targetPoint != null)
-            {
-                agent.SetDestination(targetPoint.transform.position);
-            }
-
-            if (!agent.pathPending)
-            {
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                    {
-                        targetPoint = null;
-                    }
-                }
-            }
-
-        } else if (wandering)
-        {
-
-            targetPoint = null;
-            inBuilding = false;
-            currentlyVisiting = null;
-
-        } */
-
-    }
-/*
-    public void findMostAttractive()
-    {
-
-        if (!wandering)
-        {
-
-            var gm = gameManager.GetComponent<gameManagerScript>();
-
+			//var gm = gameManager.GetComponent<gameManagerScript>();
+			var wanderPoints = gameManager.GetComponent<gameManagerScript>().wanderingPoints;
+            GameObject attractivePoint = null;
             int attractiveWeight = 0;
 
-            for (int i = 0; i < attractionBuildings.Count; i++)
+            for (int i = 0; i < wanderPoints.Count; i++)
             {
-                attractiveWeight += attractionBuildings[i].attract;
+                attractiveWeight += wanderPoints[i].attractiveness;
             }
 
             int roll = Random.Range(0, attractiveWeight);
-
-
-            for (int j = 0; j < attractionBuildings.Count; j++)
+			
+            for (int j = 0; j < wanderPoints.Count; j++)
             {
-                if (roll <= attractionBuildings[j].attract)
-                {
+
+					if (roll <= wanderPoints[j].attractiveness)
+					{
+							attractivePoint = wanderPoints[j].point;
+							break;
+					}
+
+					roll -= wanderPoints[j].attractiveness;
+
+			}
+			return attractivePoint;
+    }
+
+        IEnumerator waitForWander()
+    {
+        yield return new WaitForSeconds(wanderingTime);
+        findAttraction();
+
+    }
+
+    public void findAttraction() 
+    {
+
+        var gmScript = gameManager.GetComponent<gameManagerScript>();
+        var openAttractions = gmScript.attractionBuildings;
+                   
+        int attractiveWeight = 0;
+
+        for (int i = 0; i < openAttractions.Count; i++)
+        {
+            attractiveWeight += openAttractions[i].attract;
+        }
+
+        int roll = Random.Range(0, attractiveWeight);
 
 
-                    if (attractionBuildings[j].building.GetComponent<buildingManager>() == true && gm.attractionExists == true)
-                    {
-
-                        //findMostAttractive();
-                        break;
-
-                    }
-                    else if (gm.attractionExists != true)
-                    {
-
-                        break;
-                    }
-                    else
-                    {
-                        targetPoint = attractionBuildings[j].building.GetComponent<buildingStats>().entrancePoint;
-                        targetBuilding = attractionBuildings[j].building;
-                    }
-                    return;
-                }
-
-                roll -= attractionBuildings[j].attract;
+        for (int j = 0; j < openAttractions.Count; j++)
+        {
+            if (roll <= openAttractions[j].attract)
+            {
+                attractivePoint = wanderPoints[j].point;
+                break;
 
             }
 
-        }*/
+            roll -= openAttractions[j].attract;
 
-        
+        }
+
     }
+
 
 /* 
 
