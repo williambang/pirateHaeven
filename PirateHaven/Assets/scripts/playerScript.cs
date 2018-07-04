@@ -13,12 +13,15 @@ public class playerScript : MonoBehaviour {
  	RaycastHit hit; 
 	RaycastHit planeHit;
 
+    public GameObject selectedBuilding;
+
     public GameObject buildMarker;
     public GameObject liveBuildMarker;
     public GameObject cubeMesh;
 
     public GameObject buildingMenu;
     public GameObject ringsOfDeath;
+    public GameObject dockPlots;
 
     public bool buildMode = false;
 	public GameObject objectHit;
@@ -34,10 +37,13 @@ public class playerScript : MonoBehaviour {
         //text.text = "BUILDMODE OFF";
 
     }
+
     void Update()
     {
 
-
+        if(Input.GetMouseButtonUp(0)) {
+            
+        }
 
         //SWITCH MODE
         if (Input.GetKeyUp(KeyCode.LeftAlt))
@@ -52,6 +58,7 @@ public class playerScript : MonoBehaviour {
                 //text.text = "BUILDMODE OFF";
                 buildingMenu.SetActive(false);
                 ringsOfDeath.SetActive(false);
+                dockPlots.SetActive(false);
             }
             else
             {
@@ -62,6 +69,7 @@ public class playerScript : MonoBehaviour {
 
                 buildingMenu.SetActive(true);
                 ringsOfDeath.SetActive(true);
+                dockPlots.SetActive(true);
 
                 //text.text = "BUILDMODE ON";
 
@@ -70,12 +78,15 @@ public class playerScript : MonoBehaviour {
             if (buildMode == false)
             {
 
-
-
             }
         }
 
         }
+
+    void OnMouseOver() { 
+        
+    }
+
     }
 
 

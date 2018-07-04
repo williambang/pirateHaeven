@@ -20,6 +20,12 @@ TagManager:
   - gameManager
   - buildingSettings
   - Canvas
+  - water
+  - dockPlot
+  - ship
+  - dock
+  - shipExit
+  - Worker
   layers:
   - Default
   - TransparentFX
