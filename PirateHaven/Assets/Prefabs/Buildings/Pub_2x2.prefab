@@ -180,7 +180,7 @@ MonoBehaviour:
   buildingType: 1
   buildingName: 
   ogBuildingName: 
-  attractiveness: 0
+  attractiveness: 10
   buildingLevel: 0
   constructionCost: 140000003200000078000000
   ressourcesCost: 050000000f00000014000000
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586cc688ae0541049bf58d2786f09467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visitingMultiplier: 10
   currentVisitors: []
   maxVisitors: 0a000000140000001e000000
   gm: {fileID: 0}

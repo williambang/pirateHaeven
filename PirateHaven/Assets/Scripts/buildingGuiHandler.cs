@@ -262,6 +262,12 @@ public class buildingGuiHandler : MonoBehaviour, IPointerExitHandler, IPointerEn
 
 		var bldMnger = GetComponent<buildingManager>();
         //gameManager.GetComponent<gameManagerScript>().availableWorkers.Count += bldMnger.currentAssignedWorkers;
+
+		var allWorkers = bldMnger.currentWorkers.Count;
+		for (int i = 0; i < allWorkers; i++)
+			{
+				bldMnger.removeWorker();
+			}
 			
 		var allWorkers = bldMnger.currentWorkers.Count;
 		for (int i = 0; i < allWorkers; i++)

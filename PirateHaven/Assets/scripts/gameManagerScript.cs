@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class gameManagerScript : MonoBehaviour {
 
-
     [System.Serializable]
     public class Attraction
     {
@@ -62,6 +61,9 @@ public class gameManagerScript : MonoBehaviour {
     public List<Attraction> attractionBuildings;
 
     public List<WanderingPoint> wanderingPoints;
+
+    string[] firstName = {"Edward", "Bartholemew", "William", "Mary", "Ann", "Henry", "Francis", "Jack", "Hector", "Davy", "Benjamin", "Charles", "Howell", "Samuel", "Thomas"};
+    string[] lastName = {"Teach", "Kenway", "Jones", "Davis", "Every", "Williams", "Tew", "Kidd", "Low", "Smith", "Turner", "Sparrow", "Hornigold", "Flint", "Rackam", "Vane", "Roberts"};
 
     // Use this for initialization
     void Start () {
@@ -123,16 +125,21 @@ public class gameManagerScript : MonoBehaviour {
 
     void ClickToSpawnVisitor ()
     {
+        var newVisitor = Instantiate(visitorPrefab, gameObject.transform.position, gameObject.transform.rotation);
 
-        Instantiate(visitorPrefab, gameObject.transform.position, gameObject.transform.rotation);
+        int ranF = Random.Range(0, firstName.Length - 1);
+        int ranL = Random.Range(0, lastName.Length - 1);
+        string givenName = firstName[ranF] + " " + lastName[ranL];
+        newVisitor.name = givenName;
+        visitors += 1;
 
     }
 
         void ClickToSpawnCitizen ()
     {
-        string[] name = {"jack", "smith", "johnny", "davy", "gibbs", "jim"};
-        int val = Random.Range(0, name.Length - 1);
-        string givenName = name[val];
+        int ranF = Random.Range(0, firstName.Length - 1);
+        int ranL = Random.Range(0, lastName.Length - 1);
+        string givenName = firstName[ranF] + " " + lastName[ranL];
 
         /*GameObject newCitizen = */ 
         var newCitizen = Instantiate(citizenPrefab, gameObject.transform.position, gameObject.transform.rotation);

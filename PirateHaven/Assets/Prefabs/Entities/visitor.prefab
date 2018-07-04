@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114937900390148526}
   - component: {fileID: 195679790287255202}
   - component: {fileID: 136176379723014626}
+  - component: {fileID: 54527919987828968}
   m_Layer: 0
   m_Name: visitor
   m_TagString: Untagged
@@ -39,7 +40,6 @@ GameObject:
   - component: {fileID: 4336980504635018}
   - component: {fileID: 33627165877934200}
   - component: {fileID: 23848620467980998}
-  - component: {fileID: 136912253765688476}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -116,6 +116,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973712376517590}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54527919987828968
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1310296047109968}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114937900390148526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,18 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7f0c32b3a0cd546b20e98a4583a0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allBuildings: []
   currentState: 4
-  buildingPercentage: []
-  totalAttraction: 0
-  currentlyVisiting: {fileID: 0}
   targetPoint: {fileID: 0}
-  targetBuilding: {fileID: 0}
-  collidingBuilding: {fileID: 0}
-  attractionBuildings: []
-  inBuilding: 0
-  wandering: 0
   agent: {fileID: 195679790287255202}
+  lastPoint: {fileID: 0}
+  wanderingTime: 0
 --- !u!136 &136176379723014626
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -152,19 +160,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!136 &136912253765688476
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1973712376517590}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195679790287255202
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -174,7 +169,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
