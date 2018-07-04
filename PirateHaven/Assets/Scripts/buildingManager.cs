@@ -207,12 +207,10 @@ public class buildingManager : MonoBehaviour {
 				lastWorker.SetActive(true);
 				lastWorker.GetComponent<workerScript>().resetWorker();
 				currentWorkers.Remove( lastWorker );
-				Debug.Log(lastWorker);
 		}
 
 		var lastAssignedWorker = currentAssignedWorkers[currentAssignedWorkers.Count - 1];
 		currentAssignedWorkers.Remove( lastAssignedWorker );
-		Debug.Log(lastAssignedWorker);
 
 	}
 

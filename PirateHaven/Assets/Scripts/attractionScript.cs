@@ -7,9 +7,11 @@ public class attractionScript : MonoBehaviour {
 	[System.Serializable]
     public class visiting
     {
-        public GameObject Visitor;
+        public GameObject visitor;
         public float stayingTime;
     }
+
+	public float visitingMultiplier = 10;
 
 	public List<visiting> currentVisitors;
 	public int[] maxVisitors;
@@ -83,16 +85,31 @@ public class attractionScript : MonoBehaviour {
 			}
 	}
 
-	void addVisitor(GameObject newVisitor, float time) {
+	public void addVisitor(GameObject newVisitor) {
+
+		var visitorStayingTime = Random.Range(10,12);
 
 		currentVisitors.Add( new visiting 
 		{
-			Visitor = newVisitor,
-			stayingTime = time
+			visitor = newVisitor,
+			stayingTime = visitorStayingTime
 		});
 	
 		var i = GetComponent<buildingManager>().buildingLevel - 1;
-		GetComponent<buildingGuiHandler>().peopleText.text = currentVisitors.ToString() + "/" + maxVisitors[i].ToString();
+		GetComponent<buildingGuiHandler>().peopleText.text = currentVisitors.Count.ToString() + "/" + maxVisitors[i].ToString();
+
+		newVisitor.SetActive(false);
 
 	}
+
+    IEnumerator attractionVisit(float stayingTime)
+    {
+        yield return new WaitForSeconds(stayingTime * visitingMultiplier);
+        leaveAttraction();
+
+    }
+
+    public void leaveAttraction() {
+        Debug.Log("LEAVING ATTRACTION!");
+    }
 }
