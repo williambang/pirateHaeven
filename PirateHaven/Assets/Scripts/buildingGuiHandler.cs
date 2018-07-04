@@ -107,8 +107,8 @@ public class buildingGuiHandler : MonoBehaviour, IPointerExitHandler, IPointerEn
         removeWorkerButton.onClick.AddListener(ClickToRemoveWorker);
         upgradeBuildingButton.onClick.AddListener(ClickToUpgrade);
     	deleteBuildingButton.onClick.AddListener(ClickToDelete);
-		//addEmployeeButton.onClick.AddListener(ClickToAddEmployee);
-        //removeEmployeeButton.onClick.AddListener(ClickToRemoveEmployee);
+		addEmployeeButton.onClick.AddListener(ClickToAddEmployee);
+        removeEmployeeButton.onClick.AddListener(ClickToRemoveEmployee);
 
 		standardWrapper.gameObject.SetActive(false);
 		employmentWrapper.gameObject.SetActive(false);
@@ -206,6 +206,32 @@ public class buildingGuiHandler : MonoBehaviour, IPointerExitHandler, IPointerEn
 
 	}
 
+	void ClickToAddEmployee() {
+
+	var bldMnger = GetComponent<buildingManager>();
+	var emplScript = GetComponent<employeeScript>();
+
+        if (gameManager.GetComponent<gameManagerScript>().availableWorkers > 0 && bldMnger.currentAssignedWorkers.Count < emplScript.maxEmployees)
+        {
+			bldMnger.addClosestWorker();
+			employeesText.text = bldMnger.currentAssignedWorkers.Count.ToString() + "/" + emplScript.maxEmployees.ToString();
+
+        } 		
+	}
+
+	    void ClickToRemoveEmployee()
+    {
+	
+		var bldMnger = GetComponent<buildingManager>();
+		var emplScript = GetComponent<employeeScript>();
+
+        if (bldMnger.currentAssignedWorkers.Count > 0)
+        {
+            bldMnger.removeWorker();
+			employeesText.text = bldMnger.currentAssignedWorkers.Count.ToString() + "/" + emplScript.maxEmployees.ToString();
+        }
+	}
+
 	
     void ClickToAddWorker()
     {
@@ -215,7 +241,8 @@ public class buildingGuiHandler : MonoBehaviour, IPointerExitHandler, IPointerEn
         {
 			bldMnger.addClosestWorker();
 			taskText.text = bldMnger.currentAssignedWorkers.Count.ToString() + "/" + bldMnger.maxBuilders.ToString();
-        }
+
+        } 
     }
 
     void ClickToRemoveWorker()
@@ -236,6 +263,12 @@ public class buildingGuiHandler : MonoBehaviour, IPointerExitHandler, IPointerEn
 		var bldMnger = GetComponent<buildingManager>();
         //gameManager.GetComponent<gameManagerScript>().availableWorkers.Count += bldMnger.currentAssignedWorkers;
 			
+		var allWorkers = bldMnger.currentWorkers.Count;
+		for (int i = 0; i < allWorkers; i++)
+			{
+				bldMnger.removeWorker();
+			}
+
 		bldMnger.startConstruction();
         
     }

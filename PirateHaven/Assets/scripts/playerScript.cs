@@ -13,6 +13,7 @@ public class playerScript : MonoBehaviour {
  	RaycastHit hit; 
 	RaycastHit planeHit;
 
+    public GameObject gm;
     public GameObject selectedBuilding;
 
     public GameObject buildMarker;
@@ -36,6 +37,8 @@ public class playerScript : MonoBehaviour {
         buildingMenu.SetActive(false);
         //text.text = "BUILDMODE OFF";
 
+    gm = GameObject.FindGameObjectWithTag("gameManager");
+
     }
 
     void Update()
@@ -43,6 +46,12 @@ public class playerScript : MonoBehaviour {
 
         if(Input.GetMouseButtonUp(0)) {
             
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape)) {
+
+            gm.GetComponent<gameManagerScript>().pauseGame();
+
         }
 
         //SWITCH MODE

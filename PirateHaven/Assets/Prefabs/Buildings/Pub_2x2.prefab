@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114396186332004502}
   - component: {fileID: 114731794683811986}
   - component: {fileID: 114776088383522314}
+  - component: {fileID: 114021613039003460}
   m_Layer: 0
   m_Name: Pub_2x2
   m_TagString: placedBuilding
@@ -101,6 +102,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 7, z: 4}
   m_Center: {x: 0, y: 3.6, z: 0}
+--- !u!114 &114021613039003460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901086934215464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a19f7de759dbf41a4302a673b7b21e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEmployees: 3
+  gm: {fileID: 0}
+  serviceCost: 0
+  earningRate: 0
+  serviceTime: 0
+  serviceSpeed: 0
+  currentEarnings: 0
 --- !u!114 &114396186332004502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,7 +187,7 @@ MonoBehaviour:
   taskProgressMax: 100
   currentTaskProgress: 0
   currentTask: 6
-  currentAssignedWorkers: 0
+  currentAssignedWorkers: []
   currentWorkers: []
   maxBuilders: 5
   maxFiremen: 5

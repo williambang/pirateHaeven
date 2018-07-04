@@ -39,11 +39,26 @@ public class guiManager : MonoBehaviour {
     public GameObject hoverCanvas;
     public buildingUI hoverCanvasElements;
 
+    public Sprite pause_icon;
+    public Sprite play_icon;
+    public Sprite fastForward_icon;
+    public Sprite fastForwarded_icon;
+
+    public Button pauseButton;
+    public Button fastForwardButton;
+
     public Camera MainCamera;
+
+    public GameObject gm;
 
 
 	// Use this for initialization
 	void Start () {
+
+        gm = GameObject.FindGameObjectWithTag("gameManager");
+
+	    pauseButton.onClick.AddListener(ClickToPause);
+        fastForwardButton.onClick.AddListener(ClickToFastForward);
 
 	}
 	
@@ -51,4 +66,39 @@ public class guiManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void ClickToPause () {
+
+        gm.GetComponent<gameManagerScript>().pauseGame();
+
+        if (gm.GetComponent<gameManagerScript>().gamePaused == false) {
+
+            pauseButton.GetComponent<Image>().sprite = play_icon;
+            
+
+        } else {
+
+            pauseButton.GetComponent<Image>().sprite = pause_icon;
+
+        }
+
+    }
+
+    void ClickToFastForward () {
+
+
+        gm.GetComponent<gameManagerScript>().fastForward();
+
+        if (gm.GetComponent<gameManagerScript>().fastForwarded == true) {
+
+            fastForwardButton.GetComponent<Image>().sprite = fastForward_icon;
+            
+
+        } else {
+
+            fastForwardButton.GetComponent<Image>().sprite = fastForwarded_icon;
+
+        }
+
+    }
 }
