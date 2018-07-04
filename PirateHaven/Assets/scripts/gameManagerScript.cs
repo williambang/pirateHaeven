@@ -20,6 +20,10 @@ public class gameManagerScript : MonoBehaviour {
         public int attractiveness;
     }
 
+    public bool gamePaused;
+    public bool fastForwarded;
+    public float standardTimeScale = 1.0f;
+
     public int money;
     public int rum;
     public int ressources;
@@ -79,6 +83,42 @@ public class gameManagerScript : MonoBehaviour {
         citizensWithoutHomeText.text = (population - citizensWithHome).ToString();
 
     }
+
+    public void pauseGame() {
+
+
+        if (gamePaused == true) {
+
+            Time.timeScale = 0f;
+            gamePaused = false;
+
+        } else if (gamePaused == false) {
+
+            Time.timeScale = standardTimeScale;
+            gamePaused = true;
+        }
+
+    }
+
+    
+    public void fastForward() {
+
+
+        if (fastForwarded == true) {
+
+            Time.timeScale = standardTimeScale * 2;
+            fastForwarded = false;
+ 
+        } else if (fastForwarded == false) {
+
+            Time.timeScale = standardTimeScale;
+            fastForwarded = true;
+
+        }
+
+    }
+
+    
 
 
     void ClickToSpawnVisitor ()
