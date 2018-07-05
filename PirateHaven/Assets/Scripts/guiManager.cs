@@ -71,7 +71,7 @@ public class guiManager : MonoBehaviour {
 
         gm.GetComponent<gameManagerScript>().pauseGame();
 
-        if (gm.GetComponent<gameManagerScript>().gamePaused == false) {
+        if (gm.GetComponent<gameManagerScript>().gamePaused == true) {
 
             pauseButton.GetComponent<Image>().sprite = play_icon;
             
@@ -89,14 +89,14 @@ public class guiManager : MonoBehaviour {
 
         gm.GetComponent<gameManagerScript>().fastForward();
 
-        if (gm.GetComponent<gameManagerScript>().fastForwarded == true) {
+        if (gm.GetComponent<gameManagerScript>().fastForwarded == false) {
 
-            fastForwardButton.GetComponent<Image>().sprite = fastForward_icon;
+            fastForwardButton.GetComponent<Image>().sprite = fastForwarded_icon;
             
 
         } else {
 
-            fastForwardButton.GetComponent<Image>().sprite = fastForwarded_icon;
+            fastForwardButton.GetComponent<Image>().sprite = fastForward_icon;
 
         }
 

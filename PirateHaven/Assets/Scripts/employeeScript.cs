@@ -16,7 +16,6 @@ public class employeeScript : MonoBehaviour {
 	public float serviceSpeed;
 
 
-
 	public float currentEarnings;
 	private float earnings;
 
@@ -43,6 +42,8 @@ public class employeeScript : MonoBehaviour {
 
 	IEnumerator earningsLoop () {
 
+		Debug.Log("Earning loop start");
+
 		var buildingManager = GetComponent<buildingManager>();
 		var visitorScript = GetComponent<attractionScript>();
 
@@ -63,9 +64,11 @@ public class employeeScript : MonoBehaviour {
 
 			}
 
-			earningRate = (1 / serviceSpeed) * (1 / buildingManager.currentWorkers.Count);
+			earningRate = (1.0f / serviceSpeed) * (1.0f / buildingManager.currentWorkers.Count);
 
 			currentEarnings += earnings;
+
+			Debug.Log("Add " + earnings + " to Current Earnings");
 
 		} else {
 
@@ -73,9 +76,14 @@ public class employeeScript : MonoBehaviour {
 
 		}
 
+		Debug.Log(earningRate);
+		Debug.Log(serviceTime);
+
+
+
 		yield return new WaitForSeconds(earningRate * serviceTime);
 
-		
+		Debug.Log(earningRate * serviceTime);
 
 		StartCoroutine(earningsLoop());
 

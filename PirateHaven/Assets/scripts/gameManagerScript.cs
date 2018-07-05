@@ -91,12 +91,12 @@ public class gameManagerScript : MonoBehaviour {
 
         if (gamePaused == true) {
 
-            Time.timeScale = 0f;
+            Time.timeScale = standardTimeScale;
             gamePaused = false;
 
         } else if (gamePaused == false) {
 
-            Time.timeScale = standardTimeScale;
+            Time.timeScale = 0f;
             gamePaused = true;
         }
 

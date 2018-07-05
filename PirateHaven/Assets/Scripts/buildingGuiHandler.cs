@@ -268,12 +268,6 @@ public class buildingGuiHandler : MonoBehaviour, IPointerExitHandler, IPointerEn
 			{
 				bldMnger.removeWorker();
 			}
-			
-		var allWorkers = bldMnger.currentWorkers.Count;
-		for (int i = 0; i < allWorkers; i++)
-			{
-				bldMnger.removeWorker();
-			}
 
 		bldMnger.startConstruction();
         
