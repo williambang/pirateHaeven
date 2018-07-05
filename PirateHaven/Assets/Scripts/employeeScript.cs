@@ -15,10 +15,6 @@ public class employeeScript : MonoBehaviour {
 	public float serviceTime;
 	public float serviceSpeed;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> aae17aaa00ddc2517c85a144ade1dd7d0843a08b
 	public float currentEarnings;
 	public float earnings;
 
@@ -68,40 +64,25 @@ public class employeeScript : MonoBehaviour {
 
 			}
 
-<<<<<<< HEAD
-=======
 			//float a = serviceSpeed * 0.01f;
 			//Debug.Log(serviceSpeed);
 
->>>>>>> aae17aaa00ddc2517c85a144ade1dd7d0843a08b
 			earningRate = (1.0f / serviceSpeed) * (1.0f / buildingManager.currentWorkers.Count);
 
 			currentEarnings += earnings;
 
-<<<<<<< HEAD
-			Debug.Log("Add " + earnings + " to Current Earnings");
 
-		} else {
-=======
 		} else { 
->>>>>>> aae17aaa00ddc2517c85a144ade1dd7d0843a08b
 
 			earningRate = 1;
 
 		}
 
 		Debug.Log(earningRate);
-		Debug.Log(serviceTime);
-
 
 
 		yield return new WaitForSeconds(earningRate * serviceTime);
 
-<<<<<<< HEAD
-		Debug.Log(earningRate * serviceTime);
-
-=======
->>>>>>> aae17aaa00ddc2517c85a144ade1dd7d0843a08b
 		StartCoroutine(earningsLoop());
 
 	}

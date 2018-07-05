@@ -9,17 +9,37 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1901086934215464}
+  m_RootGameObject: {fileID: 1090906576837416}
   m_IsPrefabParent: 1
---- !u!1 &1816388269948922
+--- !u!1 &1090906576837416
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4135748027217772}
-  - component: {fileID: 135314917715697246}
+  - component: {fileID: 4907604968179346}
+  - component: {fileID: 65860180209018888}
+  - component: {fileID: 54596557270035056}
+  - component: {fileID: 114109697956105020}
+  - component: {fileID: 114207992616689700}
+  - component: {fileID: 114012803486071212}
+  m_Layer: 0
+  m_Name: Housing_2x1
+  m_TagString: placedBuilding
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1094046955325158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4676359741951512}
+  - component: {fileID: 135450463322089160}
   m_Layer: 0
   m_Name: entrancePoint
   m_TagString: Untagged
@@ -27,60 +47,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1901086934215464
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4675745258929976}
-  - component: {fileID: 65485033924126202}
-  - component: {fileID: 54513415257371462}
-  - component: {fileID: 114396186332004502}
-  - component: {fileID: 114731794683811986}
-  - component: {fileID: 114776088383522314}
-  - component: {fileID: 114021613039003460}
-  m_Layer: 0
-  m_Name: Pub_2x2
-  m_TagString: placedBuilding
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4135748027217772
+--- !u!4 &4676359741951512
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1816388269948922}
+  m_GameObject: {fileID: 1094046955325158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4675745258929976}
+  m_Father: {fileID: 4907604968179346}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4675745258929976
+--- !u!4 &4907604968179346
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901086934215464}
+  m_GameObject: {fileID: 1090906576837416}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 8.567564, y: 0.05, z: -7.6849666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4135748027217772}
+  - {fileID: 4676359741951512}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54513415257371462
+--- !u!54 &54596557270035056
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901086934215464}
+  m_GameObject: {fileID: 1090906576837416}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -90,42 +89,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65485033924126202
+--- !u!65 &65860180209018888
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901086934215464}
+  m_GameObject: {fileID: 1090906576837416}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 8, y: 7, z: 4}
   m_Center: {x: 0, y: 3.6, z: 0}
---- !u!114 &114021613039003460
+--- !u!114 &114012803486071212
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901086934215464}
+  m_GameObject: {fileID: 1090906576837416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30a19f7de759dbf41a4302a673b7b21e, type: 3}
+  m_Script: {fileID: 11500000, guid: d2af8c0e62e3adc42adab1c543e1690d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEmployees: 3
+  currentLiving: 0
+  maxLiving: 050000000a00000014000000
   gm: {fileID: 0}
-  serviceCost: 0
-  earningRate: 0
-  serviceTime: 0
-  serviceSpeed: 0
-  currentEarnings: 0
---- !u!114 &114396186332004502
+--- !u!114 &114109697956105020
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901086934215464}
+  m_GameObject: {fileID: 1090906576837416}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5cd932e3299d744eb713557f5edd28d, type: 3}
@@ -162,12 +157,12 @@ MonoBehaviour:
   mouseClicked: 0
   guiStarted: 0
   mouseOverBuilding: 0
---- !u!114 &114731794683811986
+--- !u!114 &114207992616689700
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901086934215464}
+  m_GameObject: {fileID: 1090906576837416}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b989ac5ff041ed4ab2bfa546ac12043, type: 3}
@@ -176,11 +171,11 @@ MonoBehaviour:
   overlapping: 0
   preview: 0
   gm: {fileID: 0}
-  entrancePoint: {fileID: 1816388269948922}
+  entrancePoint: {fileID: 1094046955325158}
   buildingType: 1
   buildingName: 
   ogBuildingName: 
-  attractiveness: 10
+  attractiveness: 0
   buildingLevel: 0
   constructionCost: 140000003200000078000000
   ressourcesCost: 050000000f00000014000000
@@ -189,46 +184,28 @@ MonoBehaviour:
   currentTask: 6
   currentAssignedWorkers: []
   currentWorkers: []
-  maxBuilders: 5
-  maxFiremen: 5
+  maxBuilders: 3
+  maxFiremen: 3
   harborBuilding: 0
   firestarter: 0
   currentBuilding: {fileID: 0}
   worksite:
-  - {fileID: 1786285282083412, guid: aab9f7a6f5e91254f888fb32c1e54324, type: 2}
-  - {fileID: 1977950062720944, guid: e7d9c5a0ca458b3459a4d1d581136da7, type: 2}
-  - {fileID: 1027506652152702, guid: 92bd0c9f9f46d4944a639cc93be04ad9, type: 2}
+  - {fileID: 1892574703642194, guid: ff5cf6bc334548642979adc7743e0334, type: 2}
+  - {fileID: 1298639337564100, guid: c22be7fdcfe09f848a502b8284ce978f, type: 2}
+  - {fileID: 1346555980111728, guid: ebf2bbfb9a8b931439c030c4e771855d, type: 2}
   level:
-  - {fileID: 1953780311736712, guid: 078246ccdad47514893576098cd11e1a, type: 2}
-  - {fileID: 1223064341402186, guid: 7c10035b6bb0bb44297447aa713a5167, type: 2}
-  - {fileID: 1957086708918956, guid: 63da822cc039bd84b9361d51665a395b, type: 2}
---- !u!114 &114776088383522314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901086934215464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 586cc688ae0541049bf58d2786f09467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visitingMultiplier: 10
-  currentVisitors: []
-  maxVisitors: 0a000000140000001e000000
-  gm: {fileID: 0}
-  self:
-    building: {fileID: 0}
-    attract: 0
---- !u!135 &135314917715697246
+  - {fileID: 1614479638270726, guid: 0373bf2f39c5b10498eb1c12b71044a1, type: 2}
+  - {fileID: 1152869073857302, guid: 1013b8da13ed5da40ab1b28559ec297c, type: 2}
+  - {fileID: 1726447491442372, guid: 1d7a2521107a67b4a9e0763a307ba9ce, type: 2}
+--- !u!135 &135450463322089160
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1816388269948922}
+  m_GameObject: {fileID: 1094046955325158}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

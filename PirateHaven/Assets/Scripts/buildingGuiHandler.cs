@@ -268,10 +268,7 @@ public class buildingGuiHandler : MonoBehaviour, IPointerExitHandler, IPointerEn
 			{
 				bldMnger.removeWorker();
 			}
-<<<<<<< HEAD
 
-=======
->>>>>>> aae17aaa00ddc2517c85a144ade1dd7d0843a08b
 		bldMnger.startConstruction();
         
     }

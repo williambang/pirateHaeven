@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class modifyTerrain : MonoBehaviour
 {
-
+/*
 	 float[,,] element;
      int mapX, mapY;
      TerrainData terrainData;
@@ -59,6 +59,6 @@ public class modifyTerrain : MonoBehaviour
 			myTerrain.Flush();
 		}
 
-	
+	 */
 }
 
