@@ -115,13 +115,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEmployees: 3
   gm: {fileID: 0}
+<<<<<<< HEAD
   visitorServiceCost: 0.5
+=======
+  visitorServiceCost: 2
+>>>>>>> aae17aaa00ddc2517c85a144ade1dd7d0843a08b
   naturalRessources: 0
   rum: 0
   earningRate: 0
   serviceTime: 100
   serviceSpeed: 1
   currentEarnings: 0
+  earnings: 0
 --- !u!114 &114396186332004502
 MonoBehaviour:
   m_ObjectHideFlags: 1
