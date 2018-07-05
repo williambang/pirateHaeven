@@ -57,8 +57,8 @@ public class guiManager : MonoBehaviour {
 
         gm = GameObject.FindGameObjectWithTag("gameManager");
 
-	    //pauseButton.onClick.AddListener(ClickToPause);
-        //fastForwardButton.onClick.AddListener(ClickToFastForward);
+	    pauseButton.onClick.AddListener(ClickToPause);
+        fastForwardButton.onClick.AddListener(ClickToFastForward);
 
 	}
 	
@@ -91,12 +91,11 @@ public class guiManager : MonoBehaviour {
 
         if (gm.GetComponent<gameManagerScript>().fastForwarded == false) {
 
-            fastForwardButton.GetComponent<Image>().sprite = fastForwarded_icon;
-            
-
+            fastForwardButton.GetComponent<Image>().sprite = fastForward_icon;
+        
         } else {
 
-            fastForwardButton.GetComponent<Image>().sprite = fastForward_icon;
+            fastForwardButton.GetComponent<Image>().sprite = fastForwarded_icon;
 
         }
 

@@ -19,9 +19,21 @@ public class gameManagerScript : MonoBehaviour {
         public int attractiveness;
     }
 
+    public string[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "Ocotober", "November", "December"};
+
     public bool gamePaused;
     public bool fastForwarded;
     public float standardTimeScale = 1.0f;
+
+    public GameObject sun;
+    public float sunRadius;
+
+    public float minutesPerDay;
+    public int currentDay = 1;
+    public int currentMonth = 1;
+    public int currentYear = 1720;
+    public int currentHourTime;
+    public int currentMinuteTime;
 
     public int money;
     public int rum;
@@ -53,6 +65,11 @@ public class gameManagerScript : MonoBehaviour {
     public Text availableWorkersText;
     public Text citizensWithoutHomeText;
 
+    public Text yearText;
+    public Text monthText;
+    public Text dayText;
+    public Text clockText;
+
     public Button spawnVisitor;
     public Button spawnCitizen;
     public GameObject visitorPrefab;
@@ -70,6 +87,10 @@ public class gameManagerScript : MonoBehaviour {
 
         spawnVisitor.onClick.AddListener(ClickToSpawnVisitor);
         spawnCitizen.onClick.AddListener(ClickToSpawnCitizen);
+
+        StartCoroutine(clockTimer());
+
+
     }
 
     // Update is called once per frame
@@ -84,6 +105,45 @@ public class gameManagerScript : MonoBehaviour {
         availableWorkersText.text = availableWorkers.ToString();
         citizensWithoutHomeText.text = (population - citizensWithHome).ToString();
 
+        //sunRadius += ((360 / minutesPerDay) / 60);
+        
+
+        if (fastForwarded == true) {
+
+            sunRadius += 0.010f;
+
+
+        } else {
+
+            sunRadius += 0.005f;
+
+        }
+
+        if (sunRadius > 360) {
+
+            sunRadius = 0;
+            sun.transform.eulerAngles = new Vector3 (sun.transform.eulerAngles.x, sun.transform.eulerAngles.y, 0);
+
+        }
+
+        if (sunRadius == 0) {
+
+            sunRadius = 90;
+            sun.transform.eulerAngles = new Vector3 (sun.transform.eulerAngles.x, sun.transform.eulerAngles.y, 90);
+
+        }
+  
+        if (fastForwarded == true) {
+
+            sun.transform.Rotate(0, 0, 0.010f);
+
+
+        } else {
+
+            sun.transform.Rotate(0, 0, 0.005f);
+
+        }
+
     }
 
     public void pauseGame() {
@@ -91,8 +151,19 @@ public class gameManagerScript : MonoBehaviour {
 
         if (gamePaused == true) {
 
-            Time.timeScale = standardTimeScale;
-            gamePaused = false;
+            if (fastForwarded == true) {
+
+                Time.timeScale = standardTimeScale * 2;
+                gamePaused = false;
+
+            } else {
+
+                Time.timeScale = standardTimeScale;
+                gamePaused = false;
+
+            }
+
+            
 
         } else if (gamePaused == false) {
 
@@ -106,15 +177,15 @@ public class gameManagerScript : MonoBehaviour {
     public void fastForward() {
 
 
-        if (fastForwarded == true) {
+        if (fastForwarded == false) {
 
             Time.timeScale = standardTimeScale * 2;
-            fastForwarded = false;
+            fastForwarded = true;
  
-        } else if (fastForwarded == false) {
+        } else if (fastForwarded == true) {
 
             Time.timeScale = standardTimeScale;
-            fastForwarded = true;
+            fastForwarded = false;
 
         }
 
@@ -146,5 +217,76 @@ public class gameManagerScript : MonoBehaviour {
         newCitizen.name = givenName;
         population += 1;
         availableWorkers +=1;
+    }
+
+    IEnumerator clockTimer() {
+
+        yield return new WaitForSeconds(minutesPerDay / 24f);
+
+        if (currentHourTime == 24) {
+
+            if (currentDay > 30) {
+
+                if (currentMonth > 10) {
+
+                    currentMonth = 0;
+                    currentYear += 1;
+                    currentDay = 1;
+                    currentHourTime = 0;
+
+                } else {
+
+                    currentDay = 1;
+                    currentMonth += 1;
+                    currentHourTime = 0;
+
+                }
+
+
+
+            } else {
+                currentDay += 1;
+                currentHourTime = 0;
+            }
+
+        }
+
+        if (currentMinuteTime == 60) {
+
+            currentHourTime += 1;
+            currentMinuteTime = 0;
+
+        } else {
+
+            currentMinuteTime += 1;
+
+            if (currentMinuteTime < 10) {
+
+                if (currentHourTime > 9) {
+                    clockText.text = currentHourTime.ToString() + ":0" + currentMinuteTime.ToString();
+                } else {
+                    clockText.text = "0" + currentHourTime.ToString() + ":0" + currentMinuteTime.ToString();
+                }
+            } else if (currentMinuteTime > 9) {
+                if (currentHourTime < 10) {
+                    clockText.text = "0" + currentHourTime.ToString() + ":" + currentMinuteTime.ToString();
+                } else {
+                    clockText.text = currentHourTime.ToString() + ":" + currentMinuteTime.ToString();
+                }
+            }
+
+            dayText.text = currentDay.ToString();
+            monthText.text = month[currentMonth];
+            yearText.text = currentYear.ToString();
+
+        }
+
+        StartCoroutine(clockTimer());
+
+        
+
+        
+//        dayText.text = "Day " + currentDay.ToString();
+
     }
 }
