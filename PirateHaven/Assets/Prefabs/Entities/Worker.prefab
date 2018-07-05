@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 136607328166976508}
   - component: {fileID: 114032633758296546}
   - component: {fileID: 54180237468261376}
+  - component: {fileID: 114430746169388884}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885868530427940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.48, y: 0.05, z: 1.94}
+  m_LocalPosition: {x: -47.76682, y: 0.1896581, z: -19.41843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4126555477748196}
@@ -146,6 +147,18 @@ MonoBehaviour:
   targetPoint: {fileID: 0}
   agent: {fileID: 195949870820479908}
   lastPoint: {fileID: 0}
+--- !u!114 &114430746169388884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885868530427940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e730b5029c3c0408cfc92af442d1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTerrain: {fileID: 0}
 --- !u!136 &136607328166976508
 CapsuleCollider:
   m_ObjectHideFlags: 1

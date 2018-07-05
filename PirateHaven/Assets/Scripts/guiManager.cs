@@ -57,8 +57,8 @@ public class guiManager : MonoBehaviour {
 
         gm = GameObject.FindGameObjectWithTag("gameManager");
 
-	    pauseButton.onClick.AddListener(ClickToPause);
-        fastForwardButton.onClick.AddListener(ClickToFastForward);
+	    //pauseButton.onClick.AddListener(ClickToPause);
+        //fastForwardButton.onClick.AddListener(ClickToFastForward);
 
 	}
 	
